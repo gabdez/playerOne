@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:player_one/appTheme.dart';
+import 'package:player_one/widgets/cardSoiree.dart';
+import 'package:player_one/models/Soiree.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key key}) : super(key: key);
@@ -10,13 +12,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   AnimationController animationController;
-  bool multiple = false;
-  List<String> homeList = [
-    "assets/images/famille.jpeg",
-    "assets/images/soireeAmis.jpeg",
-    "assets/images/restaurant.jpeg",
-    "assets/images/hot.jpeg"
-  ];
+  bool multiple = false; // know if its the view with multiple
+  List<Soiree> listeSoiree = Soiree.getAllSoiree();
 
   @override
   void initState() {
@@ -48,9 +45,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       physics: BouncingScrollPhysics(),
                       scrollDirection: Axis.vertical,
                       children: List.generate(
-                        homeList.length,
+                        listeSoiree.length,
                         (index) {
-                          var count = homeList.length;
+                          var count = listeSoiree.length;
                           var animation = Tween(begin: 0.0, end: 1.0).animate(
                             CurvedAnimation(
                               parent: animationController,
@@ -69,31 +66,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                       0.0, 50 * (1.0 - animation.value), 0.0),
                                   child: AspectRatio(
                                     aspectRatio: 1.5,
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(4.0)),
-                                      child: Stack(
-                                        alignment: AlignmentDirectional.center,
-                                        children: <Widget>[
-                                          Image.asset(
-                                            homeList[index],
-                                            fit: BoxFit.cover,
-                                          ),
-                                          Material(
-                                            color: Colors.transparent,
-                                            child: InkWell(
-                                              splashColor:
-                                                  Colors.grey.withOpacity(0.1),
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(4.0)),
-                                              onTap: () {
-                                                print('gab');
-                                              },
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
+                                    child: CardSoiree(
+                                        listeSoiree[index], multiple),
                                   ),
                                 ),
                               );
@@ -134,7 +108,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               child: Padding(
                 padding: const EdgeInsets.only(top: 4),
                 child: Text(
-                  "Flutter UI",
+                  "Player One",
                   style: new TextStyle(
                     fontSize: 22,
                     color: AppTheme.darkText,

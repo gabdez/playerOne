@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:player_one/HomePage.dart';
+import 'package:player_one/screens/HomePage.dart';
 import 'package:player_one/appTheme.dart';
 
 void main() {
