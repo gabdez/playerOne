@@ -66,8 +66,21 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                       0.0, 50 * (1.0 - animation.value), 0.0),
                                   child: AspectRatio(
                                     aspectRatio: 1.5,
-                                    child: CardSoiree(
-                                        listeSoiree[index], multiple),
+                                    child:
+                                        CardSoiree(listeSoiree[index], multiple,
+                                            (Soiree soiree) {
+                                      print(soiree.name);
+                                      if (soiree.isLocked) {
+                                        print('soiree locked');
+                                      } else {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  soiree.widget,
+                                            ));
+                                      }
+                                    }),
                                   ),
                                 ),
                               );

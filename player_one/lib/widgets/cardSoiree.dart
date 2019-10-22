@@ -4,7 +4,8 @@ import 'package:player_one/models/Soiree.dart';
 class CardSoiree extends StatelessWidget {
   final Soiree soiree;
   final bool multiple;
-  CardSoiree(this.soiree, this.multiple);
+  final TapCallback callback;
+  CardSoiree(this.soiree, this.multiple, this.callback);
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +24,21 @@ class CardSoiree extends StatelessWidget {
             soiree.isLocked
                 ? Container(
                     child: Container(
-                      margin: EdgeInsets.only(top: 10),
+                      margin: EdgeInsets.only(top: 10, right: 4),
                       alignment: Alignment(1, -1),
-                      child: Icon(
-                        Icons.lock,
-                        size: !multiple ? 40 : 20,
-                        color: Colors.red[100],
+                      child: Column(
+                        children: <Widget>[
+                          Icon(
+                            Icons.lock,
+                            size: !multiple ? 30 : 20,
+                            color: Colors.red[100],
+                          ),
+                          Text(
+                            soiree.price.toString() + "€",
+                            style:
+                                TextStyle(color: Colors.red[100], fontSize: 14),
+                          ),
+                        ],
                       ),
                     ),
                     color: Colors.black.withOpacity(0.5),
@@ -40,11 +50,7 @@ class CardSoiree extends StatelessWidget {
                 splashColor: Colors.grey.withOpacity(0.1),
                 borderRadius: BorderRadius.all(Radius.circular(4.0)),
                 onTap: () {
-                  if (soiree.isLocked) {
-                    print('is locked');
-                  } else {
-                    print('is not locked');
-                  }
+                  this.callback(soiree);
                 },
               ),
             ),
@@ -72,3 +78,5 @@ class CardSoiree extends StatelessWidget {
     );
   }
 }
+
+typedef TapCallback = void Function(Soiree soiree);
