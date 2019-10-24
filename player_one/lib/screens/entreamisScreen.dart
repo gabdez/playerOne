@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../appTheme.dart';
 
-class RestaurantScreen extends StatefulWidget {
-  RestaurantScreen({Key key}) : super(key: key);
+class EntreAmisScreen extends StatefulWidget {
+  EntreAmisScreen({Key key}) : super(key: key);
 
   @override
-  _RestaurantScreenState createState() => _RestaurantScreenState();
+  _EntreAmisScreenState createState() => _EntreAmisScreenState();
 }
 
-class _RestaurantScreenState extends State<RestaurantScreen> {
+class _EntreAmisScreenState extends State<EntreAmisScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

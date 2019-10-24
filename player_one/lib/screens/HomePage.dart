@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:player_one/appTheme.dart';
+import 'package:player_one/screens/soireeScreen.dart';
 import 'package:player_one/widgets/cardSoiree.dart';
 import 'package:player_one/models/Soiree.dart';
 
@@ -77,7 +78,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                             context,
                                             MaterialPageRoute(
                                               builder: (context) =>
-                                                  soiree.widget,
+                                                  SoireeScreen(soiree),
                                             ));
                                       }
                                     }),

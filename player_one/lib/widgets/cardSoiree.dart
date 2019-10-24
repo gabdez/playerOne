@@ -16,9 +16,12 @@ class CardSoiree extends StatelessWidget {
           children: <Widget>[
             Container(
               alignment: Alignment(0, 0),
-              child: Image.asset(
-                soiree.url,
-                fit: BoxFit.cover,
+              child: Hero(
+                tag: "img" + soiree.url,
+                child: Image.asset(
+                  soiree.url,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             soiree.isLocked
